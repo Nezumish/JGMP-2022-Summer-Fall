@@ -1,0 +1,7 @@
+spring:
+  data:
+    solr:
+      host: http://localhost:8983/solr/
+
+books:
+  path: 2-36-search-engines/books

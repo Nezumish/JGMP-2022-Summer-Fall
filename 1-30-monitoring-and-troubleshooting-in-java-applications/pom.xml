@@ -4,9 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>1-30-monitoring-and-troubleshooting-in-java-applications</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <artifactId>JGMP-2022-Summer-Fall</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
+    <artifactId>1-30-monitoring-and-troubleshooting-in-java-applications</artifactId>
 
 </project>
