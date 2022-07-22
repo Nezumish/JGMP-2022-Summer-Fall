@@ -5,25 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
- * Information about a stored book
+ * The value field of the {@link FacetResponseDto}
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class BookDto {
+public class FieldResponseDto {
 
-    private String id;
-
-    private String title;
-
-    private List<String> authors;
-
-    private String content;
-
-    private String language;
+    private String name;
 
 }

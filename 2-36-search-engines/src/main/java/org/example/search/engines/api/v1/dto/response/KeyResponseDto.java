@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The value field of the {@link FacetDto}
+ * The name of the key of the field in {@link FacetResponseDto}
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class FieldDto {
+public class KeyResponseDto {
 
     private String name;
 

@@ -5,15 +5,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
- * The name of the key of the field in {@link FacetDto}
+ * The total result of the search
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class KeyDto {
+public class BooksResponseDto {
 
-    private String name;
+    private List<BookResponseDto> books;
+
+    private List<FacetResponseDto> facets;
+
+    private Integer numFound;
 
 }

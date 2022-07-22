@@ -3,8 +3,8 @@ package org.example.search.engines.api.v1;
 import org.example.search.engines.api.ApiVersions;
 
 import org.example.search.engines.api.v1.dto.request.SearchBookRequestDto;
-import org.example.search.engines.api.v1.dto.response.BookDto;
-import org.example.search.engines.api.v1.dto.response.BooksDto;
+import org.example.search.engines.api.v1.dto.response.BookResponseDto;
+import org.example.search.engines.api.v1.dto.response.BooksResponseDto;
 
 import org.example.search.engines.api.v1.dto.response.SuggestionResponseDto;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,14 +21,14 @@ import java.util.List;
  * The Api of the Book resource
  */
 @RequestMapping("/api/" + ApiVersions.DEFAULT + "/books")
-public interface BookResourceApi {
+public interface BookResource {
 
     /**
      * @param bookId - book id
-     * @return {@link BookDto} by its id
+     * @return {@link BookResponseDto} by its id
      */
     @GetMapping("/{bookId}")
-    BookDto getBookById(@PathVariable("bookId") String bookId);
+    BookResponseDto getBookById(@PathVariable("bookId") String bookId);
 
     /**
      * @param query - query to define similar titles of the books
@@ -42,7 +42,7 @@ public interface BookResourceApi {
      * @return results matching the given searching criteria
      */
     @GetMapping
-    BooksDto searchBooksLike(@RequestBody SearchBookRequestDto searchBookRequestDto);
+    BooksResponseDto searchBooksLike(@RequestBody SearchBookRequestDto searchBookRequestDto);
 
     /**
      * Updates the library

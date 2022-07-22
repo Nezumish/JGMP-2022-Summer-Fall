@@ -11,9 +11,9 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.SuggesterResponse;
 import org.example.search.engines.api.v1.dto.request.SearchBookRequestDto;
-import org.example.search.engines.api.v1.dto.response.BookDto;
-import org.example.search.engines.api.v1.dto.response.BooksDto;
-import org.example.search.engines.api.v1.dto.response.FacetDto;
+import org.example.search.engines.api.v1.dto.response.BookResponseDto;
+import org.example.search.engines.api.v1.dto.response.BooksResponseDto;
+import org.example.search.engines.api.v1.dto.response.FacetResponseDto;
 import org.example.search.engines.api.v1.dto.response.SuggestionResponseDto;
 import org.example.search.engines.impl.model.SolrBook;
 import org.example.search.engines.impl.repository.SolrBookRepository;
@@ -117,17 +117,17 @@ public class BookService {
 
     /**
      * @param bookId - Solr book id
-     * @return {@link BookDto} by its Solr id
+     * @return {@link BookResponseDto} by its Solr id
      */
-    public Optional<BookDto> findBookById(String bookId) {
+    public Optional<BookResponseDto> findBookById(String bookId) {
         Optional<SolrBook> solrBookOpt = solrBookRepository.findById(bookId);
 
-        Optional<BookDto> bookDtoOpt;
+        Optional<BookResponseDto> bookDtoOpt;
         if (solrBookOpt.isPresent()) {
             SolrBook solrBook = solrBookOpt.get();
-            BookDto bookDto = objectConverter.convertValue(solrBook, BookDto.class);
+            BookResponseDto bookResponseDto = objectConverter.convertValue(solrBook, BookResponseDto.class);
 
-            bookDtoOpt = Optional.of(bookDto);
+            bookDtoOpt = Optional.of(bookResponseDto);
         } else {
             bookDtoOpt = Optional.empty();
         }
@@ -158,8 +158,8 @@ public class BookService {
      * @param searchRequestDto - the search criteria DTO
      * @return found matching books
      */
-    public BooksDto searchBooks(SearchBookRequestDto searchRequestDto) {
-        var booksDtoBuilder = BooksDto.builder();
+    public BooksResponseDto searchBooks(SearchBookRequestDto searchRequestDto) {
+        var booksDtoBuilder = BooksResponseDto.builder();
 
         Criteria criteria = SolrBookQueryUtils.extractCriteria(searchRequestDto).orElseThrow(
                 () -> new IllegalArgumentException("Request has no searching parameters")
@@ -183,27 +183,27 @@ public class BookService {
     }
 
     /**
-     * Extracts the found Facet Fields and maps them into the {@link FacetDto}
+     * Extracts the found Facet Fields and maps them into the {@link FacetResponseDto}
      *
      * @param solrResultPage - the result of the Facet Solr query
      * @return list of the mapped found Solr Facets
      */
-    private List<FacetDto> extractFacets(FacetPage<SolrBook> solrResultPage) {
+    private List<FacetResponseDto> extractFacets(FacetPage<SolrBook> solrResultPage) {
         return solrResultPage.getFacetResultPages().stream()
                 .flatMap(Streamable::get)
-                .map(facetField -> objectConverter.convertValue(facetField, FacetDto.class))
+                .map(facetField -> objectConverter.convertValue(facetField, FacetResponseDto.class))
                 .collect(Collectors.toList());
     }
 
     /**
-     * Extracts the found Solr Documents and maps them into the {@link BookDto}
+     * Extracts the found Solr Documents and maps them into the {@link BookResponseDto}
      *
      * @param solrResultPage - the result of the Solr query
      * @return list of the mapped found Solr Book documents
      */
-    private List<BookDto> extractBooks(Page<SolrBook> solrResultPage) {
+    private List<BookResponseDto> extractBooks(Page<SolrBook> solrResultPage) {
         return solrResultPage.get()
-                .map(solrBook -> objectConverter.convertValue(solrBook, BookDto.class))
+                .map(solrBook -> objectConverter.convertValue(solrBook, BookResponseDto.class))
                 .collect(Collectors.toList());
     }
 
