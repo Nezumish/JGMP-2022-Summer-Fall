@@ -18,6 +18,7 @@
         <module>1-30-monitoring-and-troubleshooting-in-java-applications</module>
         <module>2-36-search-engines</module>
         <module>3-41-code-quality</module>
+        <module>4-40-infrastructure-as-code</module>
     </modules>
 
 </project>

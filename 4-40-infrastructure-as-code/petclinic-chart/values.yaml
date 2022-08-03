@@ -1,0 +1,34 @@
+petclinic:
+  deployment:
+    name: petclinic-deployment
+    replicas: 1
+  container:
+    name: petclinic-container
+    resources: { }
+  service:
+    name: petclinic-service
+    port: 8080
+    type: ClusterIP
+  image:
+    name: petclinic
+    tag: latest
+    pullPolicy: Never
+  configmap:
+    name: petclinic-config
+    database: h2
+
+ingress:
+  enabled: false
+  name: petclinic-ingress
+  ingressClassName: nginx
+  rules:
+    host: localhost
+    http:
+      paths: /
+    path:
+    pathType: Prefix
+    backend:
+      service:
+        name: petclinic-service
+        port:
+          number: 80
