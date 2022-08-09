@@ -51,8 +51,10 @@ spec:
   ports:
     - port: {{ .Values.petclinic.service.port }}
       protocol: TCP
-      targetPort: 8080
-      name: http
+      nodePort: {{ .Values.petclinic.service.nodePort }}
+      targetPort: {{ .Values.petclinic.service.targetPort }}
+      name: {{ .Values.petclinic.service.name }}
+  type: NodePort
   selector:
     {{- include "petclinic-chart.selectorLabels" . | nindent 4 }}
     tier: backend

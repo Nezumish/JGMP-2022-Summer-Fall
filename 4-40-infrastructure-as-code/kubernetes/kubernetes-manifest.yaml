@@ -1,3 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-config
+data:
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +29,7 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: petclinic:latest
+          image: nezumish/petclinic:latest
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -42,3 +50,21 @@ spec:
             requests:
               memory: "128Mi"
               cpu: "50m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tier: backend
+  name: petclinic-service
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30000
+  selector:
+    tier: backend
+  type: NodePort

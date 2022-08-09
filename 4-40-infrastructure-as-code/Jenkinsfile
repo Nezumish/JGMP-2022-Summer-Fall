@@ -1,0 +1,67 @@
+def KUBERNETES_MANIFEST = '4-40-infrastructure-as-code/kubernetes/kubernetes-manifest.yaml'
+def KUBERNETES_CREDENTIALS_ID = "jenkins"
+def KUBERNETES_SERVER = "https://kubernetes.default"
+def KUBERNETES_NAMESPACE = "jenkins"
+
+def IMAGE = "nezumish/petclinic"
+def IMAGE_TAG = "nezumish/petclinic:latest"
+def DOCKERFILE_PATH = "4-40-infrastructure-as-code/Dockerfile"
+def DOCKERHUB_CREDENTIALS = 'dockerhub'
+def DOCKER_HOST_VALUE = 'tcp://172.17.0.4:2375'
+def DOCKER_POD = """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:19.03.6
+    command:
+    - cat
+    tty: true
+    env:
+    - name: DOCKER_HOST
+      value: ${DOCKER_HOST_VALUE}
+"""
+
+pipeline {
+  agent any
+  tools {
+      maven 'maven'
+  }
+  stages {
+    stage('Build And Push The Image') {
+      agent { kubernetes label: 'docker', yaml: "${DOCKER_POD}" }
+      steps {
+        container('docker') {
+          withCredentials([
+            usernamePassword(
+              credentialsId: "${DOCKERHUB_CREDENTIALS}",
+              usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS'
+            )
+          ]) {
+              sh """
+              docker build . -t ${IMAGE} -f ${DOCKERFILE_PATH}
+              echo ${REGISTRY_PASS} | docker login -u ${REGISTRY_USER} --password-stdin
+              docker push ${IMAGE_TAG}
+              """
+          }
+        }
+      }
+    }
+    stage('Deploy on Kubernetes') {
+      steps {
+         withKubeConfig([
+               credentialsId: "${KUBERNETES_CREDENTIALS_ID}",
+               serverUrl: "${KUBERNETES_SERVER}",
+               namespace: "${KUBERNETES_NAMESPACE}"
+         ]) {
+          sh """
+              curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubectl'
+              chmod u+x ./kubectl
+              ./kubectl apply -f ${KUBERNETES_MANIFEST} -n default
+          """
+        }
+      }
+    }
+  }
+}

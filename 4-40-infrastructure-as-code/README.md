@@ -10,16 +10,20 @@ There is a [Dockerfile](Dockerfile) in the root of the module:\
 Thr Dockerfile is built of 3 steps:
 **Step 1. Build:**
 
-**Step 2. Package:**
+**Step 2. Package:**\
+_Packager_ uses the most lightweight version of Linux image (alpine:3.10.3) to install the required JDK\
+and link only necessary java modules via _jlink_ into the custom lightweight JRE.
 
 **Step 3. Config and Deploy:**\
-Here we need to create a Docker volume and map it to a directory on PC where the config file is located.\ 
-Then we can reference it in the command:\
+The final configurations of the image: creating a system user to use instead of the root one, 
+custom Xmx and Xms parameters
+
+Here you need to create a Docker volume and map it to a directory on PC where the config file is located.\ 
+Then you can reference it in the command:\
 `docker container run`\
-`-p 8080:8080`\
+`-p 8081:8080`\
 `-v %cd%/target/classes:/target/classes` <--- this %cd% is for Window, $(pwd) is for Linux\
 `petclinic:latest`
-
 
 ###KUBERNETES PART
 Create a namespace:\
@@ -33,8 +37,13 @@ There is a kubernetes folder containing the following files:\
 1. **Deployment** [petclinic-deployment-kubernetes.yaml](/kubernetes/petclinic-deployment-kubernetes.yaml) **file:**\
 
 2. **Service** [petclinic-service-kubernetes.yaml](/kubernetes/petclinic-service-kubernetes.yaml) **file:**\
+The ClusterIP is only available inside a cluster/private cloud network,\ 
+that's why I've selected NodePort. NodePort service type has dynamic nodePort value,\
+so I've defined the fixed nodePort value
 
 3. **Configmap** [petclinic-configmap-kubernetes.yaml](/kubernetes/petclinic-configmap-kubernetes.yaml) **file:**\
+Don't really know what I'd like to customize, but I've tried to switch between different DBs\ 
+and it's worked out.
 
 The applying order:\
 `kubectl apply -f petclinic-configmap-kubernetes.yaml`\
@@ -76,3 +85,5 @@ Prevent "service "ingress-nginx-controller-admission" not found" exception:\
 
 Configure ingress-kubernetes.yaml in [kubernetes](kubernetes) folder and [ingress](petclinic-chart/templates/ingress.yaml) file\
 Reinstall with Helm
+
+_ADDRESS IT VIA_ **HTTP** _INSTEAD OF HTTPS_
