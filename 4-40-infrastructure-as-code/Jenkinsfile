@@ -7,7 +7,7 @@ def IMAGE = "nezumish/petclinic"
 def IMAGE_TAG = "nezumish/petclinic:latest"
 def DOCKERFILE_PATH = "4-40-infrastructure-as-code/Dockerfile"
 def DOCKERHUB_CREDENTIALS = 'dockerhub'
-def DOCKER_HOST_VALUE = 'tcp://172.17.0.4:2375'
+def DOCKER_HOST_VALUE = 'tcp://172.17.0.3:2375'
 def DOCKER_POD = """
 apiVersion: v1
 kind: Pod
@@ -50,16 +50,16 @@ pipeline {
     }
     stage('Deploy on Kubernetes') {
       steps {
-         withKubeConfig([
-               credentialsId: "${KUBERNETES_CREDENTIALS_ID}",
-               serverUrl: "${KUBERNETES_SERVER}",
-               namespace: "${KUBERNETES_NAMESPACE}"
-         ]) {
-          sh """
-              curl -LO 'https://storage.googleapis.com/kubernetes-release/release/v1.24.3/bin/linux/amd64/kubectl'
-              chmod u+x ./kubectl
-              ./kubectl apply -f ${KUBERNETES_MANIFEST} -n default
-          """
+           withKubeConfig([
+                 credentialsId: "${KUBERNETES_CREDENTIALS_ID}",
+                 serverUrl: "${KUBERNETES_SERVER}",
+                 namespace: "${KUBERNETES_NAMESPACE}"
+           ]) {
+            sh """
+                 curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"
+                 chmod u+x ./kubectl
+                ./kubectl apply -f ${KUBERNETES_MANIFEST} -n default
+            """
         }
       }
     }

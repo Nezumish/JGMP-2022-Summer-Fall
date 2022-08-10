@@ -21,9 +21,6 @@ COPY --from=packager "$JAVA_HOME" "$JAVA_HOME"
 COPY --from=builder /src/4-40-infrastructure-as-code/target/4-40-infrastructure-as-code-1.0-SNAPSHOT.jar app.jar
 RUN addgroup --system weakuser && adduser --system weakuser && adduser weakuser weakuser && chown -R weakuser:weakuser /app.jar
 USER weakuser
-ARG maxHeapSize="500"
-ARG minHeapSize="100"
-ENV Xmx=$maxHeapSize Xms=$minHeapSize
 VOLUME /target/classes
 EXPOSE 8080
-ENTRYPOINT ["java", "-Xmx=${Xmx}", "-Xms=${Xms}", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
