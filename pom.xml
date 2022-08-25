@@ -9,16 +9,18 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <groupId>org.example</groupId>
+    <groupId>com.rntgroup</groupId>
     <artifactId>JGMP-2022-Summer-Fall</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <!--<module>1-30-monitoring-and-troubleshooting-in-java-applications</module>-->
-        <!--<module>2-36-search-engines</module>-->
-        <!--<module>3-41-code-quality</module>-->
+        <module>1-30-monitoring-and-troubleshooting-in-java-applications</module>
+        <module>2-36-search-engines</module>
+        <module>3-41-code-quality</module>
         <module>4-40-infrastructure-as-code</module>
+        <module>5-42-software-development-process</module>
+        <module>6-8-big-data</module>
     </modules>
 
 </project>

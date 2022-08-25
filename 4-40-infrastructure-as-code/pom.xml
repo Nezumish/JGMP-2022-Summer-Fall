@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.example</groupId>
+    <groupId>com.rntgroup</groupId>
     <artifactId>4-40-infrastructure-as-code</artifactId>
     <version>1.0-SNAPSHOT</version>
 

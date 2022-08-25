@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>JGMP-2022-Summer-Fall</artifactId>
-        <groupId>org.example</groupId>
+        <groupId>com.rntgroup</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
