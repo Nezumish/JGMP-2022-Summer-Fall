@@ -16,11 +16,14 @@
 
     <modules>
         <module>1-30-monitoring-and-troubleshooting-in-java-applications</module>
-        <module>2-36-search-engines</module>
+        <!--<module>2-36-search-engines</module>--> <!--todo почему-то у спринга начались проблемы с определением версии зависимости для Solr .-.-->
         <module>3-41-code-quality</module>
         <module>4-40-infrastructure-as-code</module>
         <module>5-42-software-development-process</module>
-        <module>6-8-big-data</module>
+        <module>6_7-8_50-big-data-common</module>
+        <module>6_7-8_50-big-data-spark</module>
+        <module>6_7-8_50-big-data-hadoop</module>
+        <module>6_7-8_50-big-data-kafka</module>
     </modules>
 
 </project>
