@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
  */
 public class WordCountJobService implements JobService {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int launchJobWithParameters(Map<ApplicationParameter, String> jobConfiguration) throws Exception {
         prepareStopWordsFilterIfPresent(jobConfiguration);
@@ -32,7 +35,10 @@ public class WordCountJobService implements JobService {
         return ToolRunner.run(workCountJob, getInputOutputArgs(jobConfiguration));
     }
 
-    private void prepareStopWordsFilterIfPresent(Map<ApplicationParameter, String> jobConfiguration) throws IOException {
+    /**
+     * Extracts stop words from passed arguments if present and loads it to the mapper
+     */
+    private void prepareStopWordsFilterIfPresent(Map<ApplicationParameter, String> jobConfiguration) {
         if (jobConfiguration.containsKey(ApplicationParameter.STOP_WORDS)) {
             String stopWordsLine = jobConfiguration.get(ApplicationParameter.STOP_WORDS);
 
@@ -43,6 +49,12 @@ public class WordCountJobService implements JobService {
         }
     }
 
+    /**
+     * Prepares job configuration
+     *
+     * @param jobConfiguration - raw job configuration
+     * @return ordered job configuration parameters
+     */
     private String[] getInputOutputArgs(Map<ApplicationParameter, String> jobConfiguration) {
         return new String[]{
                 jobConfiguration.get(ApplicationParameter.DATA_FILE_PATH),

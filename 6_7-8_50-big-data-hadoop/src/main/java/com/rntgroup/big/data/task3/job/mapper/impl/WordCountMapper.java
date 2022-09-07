@@ -25,6 +25,9 @@ public class WordCountMapper extends WordMapper {
         STOP_WORDS.addAll(stopWords);
     }
 
+    /**
+     * Splits given line into the words and counts its appearance
+     */
     @Override
     public void map(LongWritable key, Text value, Mapper<LongWritable, Text, Text, IntWritable>.Context context) {
         String line = value.toString();
@@ -38,10 +41,19 @@ public class WordCountMapper extends WordMapper {
                 .forEach(token -> tryWrite(context, token, word));
     }
 
+    /**
+     * Removes redundant symbols from token
+     *
+     * @param token - the token to clear
+     * @return only letters token
+     */
     private String cleanToken(String token) {
         return token.replaceAll(NOT_A_LETTER, "");
     }
 
+    /**
+     * Inserts counted token into the job context
+     */
     private void tryWrite(Mapper<LongWritable, Text, Text, IntWritable>.Context context, String token, Text word) {
         word.set(token);
         try {

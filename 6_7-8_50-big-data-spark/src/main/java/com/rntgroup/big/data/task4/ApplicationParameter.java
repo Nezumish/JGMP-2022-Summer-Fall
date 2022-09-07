@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Utility enum class to maintain application arguments
+ */
 public enum ApplicationParameter {
 
     DATA_FILE_PATH("--data", " <file-path> \n\tthe path to a text file to process", true),

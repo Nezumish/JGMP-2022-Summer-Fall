@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.Collection;
 
+/**
+ * The abstract class of a Spark Service providing with a WordCount solution
+ */
 public abstract class SparkWordCountService implements Serializable {
 
     protected static final String SLASH_PREFIX = "/";
@@ -19,8 +22,14 @@ public abstract class SparkWordCountService implements Serializable {
         this.log = LoggerFactory.getLogger(SparkWordCountService.class);
     }
 
+    /**
+     * Launches a Spark solution with given parameters
+     */
     public abstract void launchSomeWorkCountJob(String inputDataPath, String outputDataPath, Collection<String> stopWords);
 
+    /**
+     * Converts a local file path to Spark local file format
+     */
     protected String toLocalFilePath(String filePath) {
         StringBuilder builtFilePath = new StringBuilder(LOCAL_FILE_PREFIX);
 
@@ -33,6 +42,9 @@ public abstract class SparkWordCountService implements Serializable {
         return builtFilePath.toString();
     }
 
+    /**
+     * Removes redundant symbols from the token
+     */
     protected String removeSymbols(String string) {
         return string.replaceAll(NOT_A_LETTER, "");
     }

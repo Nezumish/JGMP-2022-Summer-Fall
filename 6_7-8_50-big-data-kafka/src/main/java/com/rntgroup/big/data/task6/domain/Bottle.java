@@ -3,6 +3,9 @@ package com.rntgroup.big.data.task6.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * The most dumb domain object
+ */
 @Document("bottles")
 public final class Bottle {
 

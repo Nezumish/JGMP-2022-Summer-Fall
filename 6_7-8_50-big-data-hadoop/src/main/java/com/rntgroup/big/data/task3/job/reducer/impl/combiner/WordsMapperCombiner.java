@@ -6,8 +6,14 @@ import org.apache.hadoop.io.Text;
 
 import java.io.IOException;
 
+/**
+ * Simple realisation of {@link WordReducer} to combine mapper results before reducing it
+ */
 public class WordsMapperCombiner extends WordReducer {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context)
             throws IOException, InterruptedException {

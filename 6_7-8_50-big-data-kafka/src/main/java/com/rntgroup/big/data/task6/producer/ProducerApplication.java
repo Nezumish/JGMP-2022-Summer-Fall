@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class ProducerApplication {
 
+    /**
+     * Launches producer to write messages to a topic given in the application configuration
+     */
     public static void main(String[] args) {
         SpringApplication.run(ProducerApplication.class);
     }

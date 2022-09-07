@@ -9,9 +9,15 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The class representing a simple Kafka Producer scheduled to send a message in a period of time
+ */
 @Component
 public class BottleProducer {
 
+    /**
+     * A simple callback to know what happened to a produced message
+     */
     private static class Callback implements ListenableFutureCallback<SendResult<String, Bottle>> {
 
         private final String message;

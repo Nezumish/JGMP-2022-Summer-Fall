@@ -6,7 +6,6 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
-import org.apache.spark.sql.functions;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

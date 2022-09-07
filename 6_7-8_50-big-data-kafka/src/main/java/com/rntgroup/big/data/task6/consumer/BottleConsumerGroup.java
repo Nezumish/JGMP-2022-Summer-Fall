@@ -1,6 +1,6 @@
 package com.rntgroup.big.data.task6.consumer;
 
-import com.rntgroup.big.data.task6.consumer.service.StorageService;
+import com.rntgroup.big.data.task6.consumer.service.BottleService;
 import com.rntgroup.big.data.task6.domain.Bottle;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -9,13 +9,17 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+/**
+ * The class representing a consumer group of a topic with bottles
+ * Each @KafkaListener method reads its own partition of a topic from the configuration
+ */
 @Component
-public class BottleConsumer {
+public class BottleConsumerGroup {
 
-    private final StorageService storageService;
+    private final BottleService bottleService;
 
-    public BottleConsumer(StorageService storageService) {
-        this.storageService = storageService;
+    public BottleConsumerGroup(BottleService bottleService) {
+        this.bottleService = bottleService;
     }
 
     @KafkaListener(
@@ -24,7 +28,7 @@ public class BottleConsumer {
     )
     public void consumeMessageFromPartition0(@Payload Bottle bottle, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         System.out.println(getConsumerMessage(bottle, partition));
-        storageService.saveBottle(bottle);
+        bottleService.saveBottle(bottle);
     }
 
     @KafkaListener(
@@ -33,7 +37,7 @@ public class BottleConsumer {
     )
     public void consumeMessageFromPartition1(@Payload Bottle bottle, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         System.out.println(getConsumerMessage(bottle, partition));
-        storageService.saveBottle(bottle);
+        bottleService.saveBottle(bottle);
     }
 
     @KafkaListener(
@@ -42,7 +46,7 @@ public class BottleConsumer {
     )
     public void consumeMessageFromPartition2(@Payload Bottle bottle, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         System.out.println(getConsumerMessage(bottle, partition));
-        storageService.saveBottle(bottle);
+        bottleService.saveBottle(bottle);
     }
 
     private String getConsumerMessage(Bottle bottle, int consumer) {

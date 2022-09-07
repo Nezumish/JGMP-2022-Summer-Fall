@@ -48,6 +48,12 @@ public class WordCountJobWrapper extends Configured implements Tool {
         this.wordReducerClass = wordReducerClass;
     }
 
+    /**
+     * Launches and waits the Hadoop job with given arguments
+     *
+     * @param args - job configuration arguments
+     * @return job work result code
+     */
     @Override
     public int run(String[] args) throws Exception {
         Job job = Job.getInstance(getConf());
