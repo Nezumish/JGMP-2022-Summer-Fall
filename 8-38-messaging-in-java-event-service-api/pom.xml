@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>JGMP-2022-Summer-Fall</artifactId>
+        <groupId>com.rntgroup</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>8-38-messaging-in-java-event-service-api</artifactId>
+
+    <properties>
+        <!--Java-->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!--Swagger-->
+        <swagger.version>2.2.2</swagger.version>
+
+        <!--OpenAPI-->
+        <springdoc-openapi.version>1.6.4</springdoc-openapi.version>
+    </properties>
+
+    <dependencies>
+        <!--Internal-->
+        <dependency>
+            <groupId>com.rntgroup</groupId>
+            <artifactId>8-38-messaging-in-java-event-service-dto</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--Swagger-->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

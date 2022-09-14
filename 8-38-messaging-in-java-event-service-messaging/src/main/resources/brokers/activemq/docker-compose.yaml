@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  activemq:
+    image: webcenter/activemq:latest
+    container_name: activemq
+    volumes:
+      - ./activemq/activemq.xml:/conf/activemq.xml
+    ports:
+      # broker (admin:adminactivemq)(amq:amq)
+      - '61616:61616'
+      # web    http://boot2docker:8161/admin (admin:admin)
+      - '8161:8161'

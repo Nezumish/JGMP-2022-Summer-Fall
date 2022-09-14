@@ -24,6 +24,12 @@
         <module>6_7-8_50-big-data-spark</module>
         <module>6_7-8_50-big-data-hadoop</module>
         <module>6_7-8_50-big-data-kafka</module>
+        <module>8-38-messaging-in-java-common</module>
+        <module>8-38-messaging-in-java-event-service-api</module>
+        <module>8-38-messaging-in-java-event-service-api-async</module>
+        <module>8-38-messaging-in-java-event-service-messaging</module>
+        <module>8-38-messaging-in-java-event-service-impl</module>
+        <module>8-38-messaging-in-java-event-service-dto</module>
     </modules>
 
 </project>

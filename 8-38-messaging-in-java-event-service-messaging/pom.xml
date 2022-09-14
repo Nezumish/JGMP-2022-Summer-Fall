@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>JGMP-2022-Summer-Fall</artifactId>
+        <groupId>com.rntgroup</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>8-38-messaging-in-java-event-service-messaging</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!--Spring-->
+        <spring-boot.version>2.7.1</spring-boot.version>
+        <spring-activemq.version>5.17.2</spring-activemq.version>
+        <spring-kafka.vevrsion>2.9.0</spring-kafka.vevrsion>
+        <spting-rabbitmq.version>2.4.6</spting-rabbitmq.version>
+    </properties>
+
+    <dependencies>
+        <!--Internal-->
+        <dependency>
+            <groupId>com.rntgroup</groupId>
+            <artifactId>8-38-messaging-in-java-event-service-api-async</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--Spring-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-spring</artifactId>
+            <version>${spring-activemq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.vevrsion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>${spting-rabbitmq.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

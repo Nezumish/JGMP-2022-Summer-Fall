@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.rntgroup.messaging.in.java.messaging.configuration.KafkaAutoConfiguration

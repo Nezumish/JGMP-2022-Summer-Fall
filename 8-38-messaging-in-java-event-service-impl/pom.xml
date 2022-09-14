@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>JGMP-2022-Summer-Fall</artifactId>
+        <groupId>com.rntgroup</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>8-38-messaging-in-java-event-service-impl</artifactId>
+
+    <properties>
+        <!--Java-->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!--Spring-->
+        <spring-boot-starters.version>2.7.1</spring-boot-starters.version>
+
+        <!--DB-->
+        <h2.version>2.1.214</h2.version>
+    </properties>
+
+    <dependencies>
+        <!--Internal-->
+        <dependency>
+            <groupId>com.rntgroup</groupId>
+            <artifactId>8-38-messaging-in-java-event-service-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rntgroup</groupId>
+            <artifactId>8-38-messaging-in-java-event-service-messaging</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--Spring-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot-starters.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+            <version>${spring-boot-starters.version}</version>
+        </dependency>
+
+        <!--DB-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
