@@ -5,9 +5,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public final class Event {
+public final class Event implements Serializable {
 
     private Long id;
 

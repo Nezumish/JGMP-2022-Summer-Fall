@@ -20,6 +20,7 @@
         <spring-activemq.version>5.17.2</spring-activemq.version>
         <spring-kafka.vevrsion>2.9.0</spring-kafka.vevrsion>
         <spting-rabbitmq.version>2.4.6</spting-rabbitmq.version>
+        <spring-jms.version>5.3.21</spring-jms.version>
     </properties>
 
     <dependencies>
@@ -50,6 +51,11 @@
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
             <version>${spting-rabbitmq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring-jms.version}</version>
         </dependency>
     </dependencies>
 

@@ -7,7 +7,6 @@ import com.rntgroup.messaging.in.java.dto.Event;
 import com.rntgroup.messaging.in.java.impl.model.EventModel;
 import com.rntgroup.messaging.in.java.impl.repository.EventRepository;
 import com.rntgroup.messaging.in.java.impl.service.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,15 +17,16 @@ import java.util.stream.StreamSupport;
 @Service
 public class EventServiceImpl implements EventService {
 
+    private final ObjectMapper objectMapper;
     private final EventMessaging eventMessaging;
     private final EventRepository eventRepository;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
-    public EventServiceImpl(EventMessaging eventMessaging, EventRepository eventRepository) {
+    public EventServiceImpl(EventMessaging eventMessaging,
+                            EventRepository eventRepository,
+                            ObjectMapper objectMapper) {
         this.eventMessaging = eventMessaging;
         this.eventRepository = eventRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
