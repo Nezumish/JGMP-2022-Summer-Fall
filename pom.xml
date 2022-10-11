@@ -30,6 +30,8 @@
         <module>8-38-messaging-in-java-event-service-messaging</module>
         <module>8-38-messaging-in-java-event-service-impl</module>
         <module>8-38-messaging-in-java-event-service-dto</module>
+        <module>9-49-rpc-protocols-grpc-client-java</module>
+        <module>9-49-rpc-protocols-avro-kafka-java</module>
     </modules>
 
 </project>

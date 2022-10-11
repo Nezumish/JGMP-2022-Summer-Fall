@@ -1,0 +1,29 @@
+{
+    "type": "record",
+    "name": "Book",
+    "namespace": "com.rntgroup.rpc.protocols.avro.schema",
+    "fields": [
+        {
+            "name": "id",
+            "type": "long"
+        },
+        {
+            "name": "author",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "genre",
+            "type": [
+                {
+                    "name": "Genre",
+                    "type": "enum",
+                    "symbols": ["HORROR", "FANTASY", "SCIENCE_FICTION", "MYSTIC", "ROMANTIC", "DRAMA", "FAIRYTALE"]
+                }, "null"
+            ]
+        }
+    ]
+}

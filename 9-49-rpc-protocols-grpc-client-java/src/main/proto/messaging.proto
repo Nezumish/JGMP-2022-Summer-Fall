@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "proto/";
+option java_package = "com.rntgroup.rpc.protocols.grpc.proto";
+option java_multiple_files = true;
+
+enum Type {
+    SMS = 0;
+    LETTER = 1;
+    PIGEON = 2;
+    ICQ = 3;
+    TELEPATHIC = 4;
+    WILL = 5;
+}
+
+message RequestMessage {
+    Type Type = 1;
+    string message = 2;
+    string sender = 3;
+    string receiver = 4;
+}
+
+message ResponseMessage {
+    Type Type = 1;
+    string message = 2;
+    string sender = 3;
+    string receiver = 4;
+}
+
+service MessagingService {
+    rpc sendMessage(RequestMessage) returns (ResponseMessage);
+}
