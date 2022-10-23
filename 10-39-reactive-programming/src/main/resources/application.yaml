@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    username: postgres
+    password: postgres
+    url: r2dbc:postgresql://0.0.0.0:5432/sport
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG

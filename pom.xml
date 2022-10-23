@@ -32,6 +32,7 @@
         <module>8-38-messaging-in-java-event-service-dto</module>
         <module>9-49-rpc-protocols-grpc-client-java</module>
         <module>9-49-rpc-protocols-avro-kafka-java</module>
+        <module>10-39-reactive-programming</module>
     </modules>
 
 </project>
